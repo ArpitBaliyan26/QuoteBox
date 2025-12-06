@@ -68,16 +68,13 @@ git clone https://github.com/yourusername/QuoteBox.git
     <li><strong>script.js</strong> – Add features, change logic</li>
   </ul>
 
-  <h2>🙋 FAQ</h2>
+  <h2>🙋 FAQs</h2>
 
   <p><strong>Q: Does QuoteBox work offline?</strong><br>
   Yes — everything is saved using LocalStorage.</p>
 
   <p><strong>Q: Will my quotes be saved permanently?</strong><br>
   Yes, unless the user clears browser data.</p>
-
-  <p><strong>Q: Can I export/import quotes?</strong><br>
-  Coming soon — or I can build it for you!</p>
 
   <h2>📄 License</h2>
   <p>This project is open-source and free to use.</p>
