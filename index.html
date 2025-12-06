@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QuoteBox</title>
+  <link rel="icon" type="image/png" href="assests/icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#" aria-label="QuoteBox home">
+        <img src="assests/logo.png" alt="QuoteBox" class="logo-img" />
+      </a>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-pressed="false" title="Toggle theme">☾</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero container">
+    <p class="lead">Save, edit, sort, and organize your favorite quotes — all stored locally in your browser.</p>
+  </section>
+
+  <main class="container main-content">
+    <section class="controls card">
+      <div class="controls-top">
+        <input id="quote-input" type="text" placeholder="Write a quote..." maxlength="300" />
+        <button id="add-btn" class="btn btn-primary">Add Quote</button>
+        <button id="clear-btn" class="btn btn-ghost">Clear All</button>
+      </div>
+
+      <div class="controls-bottom">
+        <label class="small">Search:</label>
+        <input id="search-input" type="search" placeholder="Search quotes..." />
+
+        <label class="small">Sort:</label>
+        <div class="sort-wrapper" id="sort-wrapper">
+          <select id="sort-select">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="az">Alphabetical A→Z</option>
+            <option value="za">Alphabetical Z→A</option>
+            <option value="custom">Custom (drag to reorder)</option>
+          </select>
+          <div class="disabled-tooltip" id="sort-tooltip">Unlock to change sort</div>
+        </div>
+
+        <div id="list-style-wrap" class="list-style-wrap">
+          <label class="small">List:</label>
+          <select id="list-style-select">
+            <option value="bullet">Bullet</option>
+            <option value="number">Numbered</option>
+            <option value="none">None</option>
+          </select>
+        </div>
+
+        <label class="lock-label">
+          <input id="lock-order" type="checkbox" />
+          <span class="small">Lock order</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="quotes card">
+      <ul id="quotes-list" aria-live="polite"></ul>
+    </section>
+
+    <footer class="footer card">
+      <small>© QuoteBox — Your personal quote library</small>
+    </footer>
+  </main>
+
+  <button id="add-floating" class="add-floating" aria-hidden="true">+</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
