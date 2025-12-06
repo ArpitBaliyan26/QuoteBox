@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return v.filter(s => s.toLowerCase().includes(q));
   }
 
-  /* pointer-based drag (works on mouse & touch) */
   function startDrag(li, startIndex, text) {
     const ghost = document.createElement('div');
     ghost.className = 'drag-ghost';
@@ -123,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     right.append(edit, up, down, del);
 
-    // Hook events
     edit.addEventListener('click', () => startEdit(viewIndex));
     del.addEventListener('click', () => deleteByViewIndex(viewIndex));
 
@@ -164,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return li;
   }
 
-  /* render logic */
   function render() {
     const arr = load();
     const mode = sortSelect.value;
@@ -173,25 +170,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchActive = q.length > 0;
     const draggableAllowed = !lockCheckbox.checked;
 
-    // Body class for custom-mode (controls visibility of handles)
     if (mode === 'custom') document.body.classList.add('custom-mode'); else document.body.classList.remove('custom-mode');
 
-    // Lock UI behavior: show tooltip only when locked
     sortSelect.disabled = lockCheckbox.checked;
     if (lockCheckbox.checked) {
       sortWrapper.classList.add('select-disabled');
-      // show tooltip and auto-hide it after short delay (visual hint)
       sortTooltip.style.opacity = '1';
       if (tooltipTimer) clearTimeout(tooltipTimer);
       tooltipTimer = setTimeout(()=>{ sortTooltip.style.opacity='0'; tooltipTimer=null; }, 900);
     } else {
       sortWrapper.classList.remove('select-disabled');
-      // ensure tooltip hidden when unlocked
       if (tooltipTimer) { clearTimeout(tooltipTimer); tooltipTimer = null; }
       sortTooltip.style.opacity = '0';
     }
 
-    // show markers when NOT custom OR when custom AND locked
     const showMarkers = (mode !== 'custom') || (mode === 'custom' && lockCheckbox.checked);
     if (showMarkers) listStyleWrap.classList.remove('hidden'); else listStyleWrap.classList.add('hidden');
 
@@ -217,7 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* add / delete / edit */
   function addQuote(text) {
     const v = (text || quoteInput.value || '').trim();
     if (!v) return;
@@ -269,7 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
     editInput.focus();
   }
 
-  /* events */
   addBtn.addEventListener('click', ()=>addQuote());
   quoteInput.addEventListener('keydown', e => { if (e.key==='Enter') addQuote(); });
   if (addFloating) addFloating.addEventListener('click', ()=>addQuote());
@@ -291,7 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Theme persistence
   function applyTheme(t) {
     if (t==='dark') document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark');
     if (themeToggle) themeToggle.setAttribute('aria-pressed', t==='dark'?'true':'false');
@@ -304,13 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTheme(cur==='dark' ? 'light' : 'dark');
   });
 
-  // header shrink on scroll
   window.addEventListener('scroll', ()=> {
     if (window.scrollY > 30) header.classList.add('scrolled'); else header.classList.remove('scrolled');
   }, { passive:true });
 
-  // initial render
-  // ensure tooltip starts hidden
   if (sortTooltip) sortTooltip.style.opacity = '0';
   render();
 });
